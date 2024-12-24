@@ -1,0 +1,10 @@
+PAGE
+    Toplevel: PINN Demonstration
+        Menubar
+        TFrame: Problems  
+            TButton: btnProblem2   command: go_to_problem2
+            TButton: btnExit   command: exit_event
+            TButton: btnProblem1   command: go_to_problem1
+        TFrame: frmInfo  
+            Text: txtProgramInfo  unlocked
+
