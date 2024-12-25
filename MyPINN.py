@@ -235,7 +235,7 @@ class MyPINN1D(tf.keras.Model):
 
         return {'residual_loss': residual_loss, 'boundary_loss': boundary_loss}
 
-    def train_v1(self, epochs, batch_size, interval_info=100):
+    def train_v1(self, epochs, batch_size, interval_info=100,callback_func = None):
         """
         Обучает модель в течение заданного числа эпох с использованием мини-батчей.
 
@@ -254,6 +254,9 @@ class MyPINN1D(tf.keras.Model):
             res = self.train_step_v1(batch_size)
             if epoch % interval_info == 0:
                 print(f"epoch{epoch}, residual_loss  = {res['residual_loss']}, boundary_loss = {res['boundary_loss']}")
+                if callback_func != None:
+                    print('callback!=None')
+                    callback_func(res,epoch)
 
 
 class MyPINN2D(tf.keras.Model):
@@ -488,7 +491,7 @@ class MyPINN2D(tf.keras.Model):
 
         return {'residual_loss': residual_loss, 'boundary_loss': boundary_loss, 'initial_loss': initial_loss}
 
-    def train_v1(self, epochs, batch_size, interval_info=100):
+    def train_v1(self, epochs, batch_size, interval_info=100,callback_func = None):
         """
         Обучает модель в течение заданного числа эпох.
 
@@ -509,6 +512,9 @@ class MyPINN2D(tf.keras.Model):
             if epoch % interval_info == 0:
                 print(
                     f"epoch{epoch}, residual_loss  = {res['residual_loss']}, boundary_loss = {res['boundary_loss']}, initial_loss = {res['initial_loss']}")
+                if callback_func != None:
+                    print('callback!=None')
+                    callback_func(res,epoch)
 
 
 class StringVibrationAnimation:

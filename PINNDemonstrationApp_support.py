@@ -9,6 +9,7 @@ import sys
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.constants import *
+import threading
 
 from sympy import false
 
@@ -165,7 +166,7 @@ def interval_1_chng(*args):
         sys.stdout.flush()
 
 def interval_2_chng(*args):
-    _w4.interval_1_info.configure(text=f'{int(_w4.info_int_1_scale.get())}')
+    _w4.interval_2_info.configure(text=f'{int(_w4.info_int_2_scale.get())}')
     if _debug:
         print('PINNDemonstrationApp_support.interval_2_chng')
         for arg in args:
@@ -178,9 +179,11 @@ def train_model_1(*args):
         try:
             optimizer = tf.keras.optimizers.Adam(1e-3)
             pinn1D.compile(optimizer=optimizer)
-            _w3.list_report_2.insert(tk.END, f'Модель успешно скомпилирована. Сейчас начнется тренировка с параметрами: \
+            _w3.list_report_1.insert(tk.END, f'Модель успешно скомпилирована. Сейчас начнется тренировка с параметрами: \
                         epochs = {int(_w3.epochs_1_scale.get())}, batch_size = {int(_w3.batch_size_1_scale.get())},\
                         info interval = {int(_w3.info_int_1_scale.get())}')
+            threading.Thread(target=pinn1D.train_v1, args= (int(_w3.epochs_1_scale.get()),int(_w3.batch_size_1_scale.get()),int(_w3.info_int_1_scale.get()),callback_func_1)).start()
+
         except Exception as e:
             _w3.list_report_1.insert(tk.END,f'Произошла ошибка:{e}')
     if _debug:
@@ -198,6 +201,9 @@ def train_model_2(*args):
             _w4.list_report_2.insert(tk.END, f'Модель успешно скомпилирована. Сейчас начнется тренировка с параметрами: \
             epochs = {int(_w4.epochs_2_scale.get())}, batch_size = {int(_w4.batch_size_2_scale.get())},\
             info interval = {int(_w4.info_int_2_scale.get())}')
+            threading.Thread(target=pinn2D.train_v1, args=(
+            int(_w4.epochs_2_scale.get()), int(_w4.batch_size_2_scale.get()), int(_w4.info_int_2_scale.get()),
+            callback_func_2)).start()
         except Exception as e:
             _w4.list_report_2.insert(tk.END, f'Произошла ошибка:{e}')
     if _debug:
@@ -211,6 +217,18 @@ def prevent_closing_1():
 
 def prevent_closing_2():
     _top4.withdraw()
+
+def callback_func_1(res,epoch):
+    print("now i'm here")
+    _w3.list_report_1.insert(tk.END, f"epoch: {epoch},\
+     residual_loss : {res['residual_loss']},\
+      boundary_loss: {res['boundary_loss']}")
+
+def callback_func_2(res,epoch):
+    print("now i'm here")
+    _w4.list_report_2.insert(tk.END, f"epoch: {epoch}, residual_loss : {res['residual_loss']},\
+      boundary_loss: {res['boundary_loss']}, initial_loss: {res['initial_loss']}")
+
 if __name__ == '__main__':
     PINNDemonstrationApp.start_up()
 
