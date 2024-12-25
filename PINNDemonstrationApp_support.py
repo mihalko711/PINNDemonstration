@@ -94,14 +94,17 @@ def create_model_2(*args):
     try:
         f2 = eval('lambda x,t:' + _w4.f_2_input.get())
         g2 = eval('lambda x,t:' + _w4.g_2_input.get())
+        g22 = eval('lambda x,t:' + _w4.g_22_input.get())
         v1 = eval('lambda x:' + _w4.v_1_input.get())
         v2 = eval('lambda x:' + _w4.v_2_input.get())
         a_2 = float(_w4.a_2_input.get())
         b_2 = float(_w4.b_2_input.get())
-        pinn2D = MyPINN2D(g2,g2,v1,v2,f2,tf.convert_to_tensor([a_2,b_2]),tf.convert_to_tensor([a_2,b_2]))
+        c_2 = float(_w4.c_2_input.get())
+        d_2 = float(_w4.d_2_input.get())
+        pinn2D = MyPINN2D(g2,g22,v1,v2,f2,tf.convert_to_tensor([a_2,b_2]),tf.convert_to_tensor([c_2,d_2]))
         _w4.list_report_2.delete(0, tk.END)
         _w4.list_report_2.insert(tk.END,
-                                 f'Модель создана с параметрами: a = {a_2}, b = {b_2}')
+                                 f'Модель создана с параметрами: a = {a_2}, b = {b_2}, c = {c_2}, d = {d_2}')
         created2 = True
     except Exception as e:
         _w4.list_report_2.delete(0, tk.END)
@@ -170,6 +173,16 @@ def interval_2_chng(*args):
         sys.stdout.flush()
 
 def train_model_1(*args):
+    global created1 ,pinn1D
+    if created1:
+        try:
+            optimizer = tf.keras.optimizers.Adam(1e-3)
+            pinn1D.compile(optimizer=optimizer)
+            _w3.list_report_2.insert(tk.END, f'Модель успешно скомпилирована. Сейчас начнется тренировка с параметрами: \
+                        epochs = {int(_w3.epochs_1_scale.get())}, batch_size = {int(_w3.batch_size_1_scale.get())},\
+                        info interval = {int(_w3.info_int_1_scale.get())}')
+        except Exception as e:
+            _w3.list_report_1.insert(tk.END,f'Произошла ошибка:{e}')
     if _debug:
         print('PINNDemonstrationApp_support.train_model_1')
         for arg in args:
@@ -177,6 +190,16 @@ def train_model_1(*args):
         sys.stdout.flush()
 
 def train_model_2(*args):
+    global created2, pinn2D
+    if created2:
+        try:
+            optimizer = tf.keras.optimizers.Adam(1e-3)
+            pinn2D.compile(optimizer=optimizer)
+            _w4.list_report_2.insert(tk.END, f'Модель успешно скомпилирована. Сейчас начнется тренировка с параметрами: \
+            epochs = {int(_w4.epochs_2_scale.get())}, batch_size = {int(_w4.batch_size_2_scale.get())},\
+            info interval = {int(_w4.info_int_2_scale.get())}')
+        except Exception as e:
+            _w4.list_report_2.insert(tk.END, f'Произошла ошибка:{e}')
     if _debug:
         print('PINNDemonstrationApp_support.train_model_2')
         for arg in args:

@@ -401,12 +401,12 @@ class Problem2:
         self.v_1_label.configure(compound='left')
 
         self.g_2_label = ttk.Label(self.input_container_2)
-        self.g_2_label.place(relx=0.05, rely=0.349, height=20, width=43)
+        self.g_2_label.place(relx=0.05, rely=0.35, height=20, width=43)
         self.g_2_label.configure(font="-family {Liberation Serif} -size 12 -weight bold")
         self.g_2_label.configure(relief="flat")
         self.g_2_label.configure(anchor='w')
         self.g_2_label.configure(justify='left')
-        self.g_2_label.configure(text='''g:''')
+        self.g_2_label.configure(text='''g(a,b):''')
         self.g_2_label.configure(compound='left')
 
         self.a_b_2_label = ttk.Label(self.input_container_2)
@@ -419,7 +419,7 @@ class Problem2:
         self.a_b_2_label.configure(compound='left')
 
         self.epochs_2_label = ttk.Label(self.input_container_2)
-        self.epochs_2_label.place(relx=0.05, rely=0.551, height=20, width=65)
+        self.epochs_2_label.place(relx=0.05, rely=0.65, height=20, width=65)
         self.epochs_2_label.configure(font="-family {Libertinus Serif} -size 12 -weight bold")
         self.epochs_2_label.configure(relief="flat")
         self.epochs_2_label.configure(anchor='w')
@@ -428,7 +428,7 @@ class Problem2:
         self.epochs_2_label.configure(compound='left')
 
         self.batch_size_2_label = ttk.Label(self.input_container_2)
-        self.batch_size_2_label.place(relx=0.046, rely=0.648, height=20
+        self.batch_size_2_label.place(relx=0.046, rely=0.75, height=20
                 , width=87)
         self.batch_size_2_label.configure(font="-family {Libertinus Serif} -size 12 -weight bold")
         self.batch_size_2_label.configure(relief="flat")
@@ -438,7 +438,7 @@ class Problem2:
         self.batch_size_2_label.configure(compound='left')
 
         self.info_2_label = ttk.Label(self.input_container_2)
-        self.info_2_label.place(relx=0.05, rely=0.751, height=20, width=109)
+        self.info_2_label.place(relx=0.05, rely=0.85, height=20, width=109)
         self.info_2_label.configure(font="-family {Libertinus Serif} -size 12 -weight bold")
         self.info_2_label.configure(relief="flat")
         self.info_2_label.configure(anchor='w')
@@ -480,9 +480,14 @@ class Problem2:
         self.v_2_input.configure(cursor="ibeam")
 
         self.g_2_input = ttk.Entry(self.input_container_2)
-        self.g_2_input.place(relx=0.2, rely=0.349, relheight=0.05, relwidth=0.7)
+        self.g_2_input.place(relx=0.2, rely=0.35, relheight=0.05, relwidth=0.3)
         self.g_2_input.configure(font="-family {Segoe UI} -size 9")
         self.g_2_input.configure(cursor="ibeam")
+
+        self.g_22_input = ttk.Entry(self.input_container_2)
+        self.g_22_input.place(relx=0.6, rely=0.35, relheight=0.05, relwidth=0.3)
+        self.g_22_input.configure(font="-family {Segoe UI} -size 9")
+        self.g_22_input.configure(cursor="ibeam")
 
         self.a_2_input = ttk.Entry(self.input_container_2)
         self.a_2_input.place(relx=0.2, rely=0.449, relheight=0.05, relwidth=0.3)
@@ -496,7 +501,7 @@ class Problem2:
         self.b_2_input.configure(cursor="ibeam")
 
         self.epochs_2_info = ttk.Label(self.input_container_2)
-        self.epochs_2_info.place(relx=0.8, rely=0.551, height=20, width=65)
+        self.epochs_2_info.place(relx=0.8, rely=0.65, height=20, width=65)
         self.epochs_2_info.configure(font="-family {Libertinus Serif} -size 12 -weight bold")
         self.epochs_2_info.configure(relief="flat")
         self.epochs_2_info.configure(anchor='w')
@@ -505,7 +510,7 @@ class Problem2:
         self.epochs_2_info.configure(compound='left')
 
         self.batch_size_2_info = ttk.Label(self.input_container_2)
-        self.batch_size_2_info.place(relx=0.8, rely=0.651, height=20, width=65)
+        self.batch_size_2_info.place(relx=0.8, rely=0.75, height=20, width=65)
         self.batch_size_2_info.configure(font="-family {Liberation Serif} -size 12 -weight bold")
         self.batch_size_2_info.configure(relief="flat")
         self.batch_size_2_info.configure(anchor='w')
@@ -514,7 +519,7 @@ class Problem2:
         self.batch_size_2_info.configure(compound='left')
 
         self.interval_2_info = ttk.Label(self.input_container_2)
-        self.interval_2_info.place(relx=0.8, rely=0.751, height=20, width=65)
+        self.interval_2_info.place(relx=0.8, rely=0.85, height=20, width=65)
         self.interval_2_info.configure(font="-family {Libertinus Serif} -size 12 -weight bold")
         self.interval_2_info.configure(relief="flat")
         self.interval_2_info.configure(anchor='w')
@@ -523,17 +528,17 @@ class Problem2:
         self.interval_2_info.configure(compound='left')
 
         self.epochs_2_scale = ttk.Scale(self.input_container_2, from_=1000, to=100000.0)
-        self.epochs_2_scale.place(relx=0.25, rely=0.551, relheight=0.05
+        self.epochs_2_scale.place(relx=0.25, rely=0.65, relheight=0.05
                 , relwidth=0.5)
         self.epochs_2_scale.configure(command=PINNDemonstrationApp_support.epochs_2_chng)
 
         self.batch_size_2_scale = ttk.Scale(self.input_container_2, from_=32, to=256.0)
-        self.batch_size_2_scale.place(relx=0.25, rely=0.651, relheight=0.05
+        self.batch_size_2_scale.place(relx=0.25, rely=0.75, relheight=0.05
                 , relwidth=0.5)
         self.batch_size_2_scale.configure(command=PINNDemonstrationApp_support.batch_size_2_chng)
 
         self.info_int_2_scale = ttk.Scale(self.input_container_2, from_=100, to=10000.0)
-        self.info_int_2_scale.place(relx=0.3, rely=0.751, relheight=0.05
+        self.info_int_2_scale.place(relx=0.3, rely=0.85, relheight=0.05
                 , relwidth=0.45)
         self.info_int_2_scale.configure(command=PINNDemonstrationApp_support.interval_2_chng)
 
@@ -583,6 +588,26 @@ class Problem2:
         self.list_report_2_label.configure(justify='left')
         self.list_report_2_label.configure(text='''Отчет об обучении:''')
         self.list_report_2_label.configure(compound='left')
+
+        self.c_d_2_label = ttk.Label(self.input_container_2)
+        self.c_d_2_label.place(relx=0.05, rely=0.55, height=20, width=43)
+        self.c_d_2_label.configure(font="-family {Libertinus Serif} -size 12 -weight bold")
+        self.c_d_2_label.configure(relief="flat")
+        self.c_d_2_label.configure(anchor='w')
+        self.c_d_2_label.configure(justify='left')
+        self.c_d_2_label.configure(text='''c,d:''')
+        self.c_d_2_label.configure(compound='left')
+
+        self.c_2_input = ttk.Entry(self.input_container_2)
+        self.c_2_input.place(relx=0.2, rely=0.55, relheight=0.05, relwidth=0.3)
+        self.c_2_input.configure(font="-family {Segoe UI} -size 9")
+        self.c_2_input.configure(cursor="ibeam")
+
+        self.d_2_input = ttk.Entry(self.input_container_2)
+        self.d_2_input.place(relx=0.601, rely=0.55, relheight=0.05
+                             , relwidth=0.3)
+        self.d_2_input.configure(font="-family {Segoe UI} -size 9")
+        self.d_2_input.configure(cursor="ibeam")
 
 def start_up():
     PINNDemonstrationApp_support.main()
