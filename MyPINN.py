@@ -511,9 +511,10 @@ class MyPINN2D(tf.keras.Model):
             res = self.train_step_v1(batch_size)
             if epoch % interval_info == 0:
                 print(
-                    f"epoch{epoch}, residual_loss  = {res['residual_loss']}, boundary_loss = {res['boundary_loss']}, initial_loss = {res['initial_loss']}")
+                    f"epoch:{epoch}, residual_loss  = {res['residual_loss']}, boundary_loss = {res['boundary_loss']}, initial_loss = {res['initial_loss']}")
+
                 if callback_func != None:
-                    print('callback!=None')
+                    print(f'clbck_func:{callback_func}')
                     callback_func(res,epoch)
 
 
