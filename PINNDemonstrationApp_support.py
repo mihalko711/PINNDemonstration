@@ -11,7 +11,6 @@ import tkinter.ttk as ttk
 from tkinter.constants import *
 import threading
 
-from sympy import false
 import time
 
 from MyPINN import MyPINN1D,MyPINN2D,tf,plt,np

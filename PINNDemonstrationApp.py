@@ -11,8 +11,6 @@ import tkinter.ttk as ttk
 from tkinter.constants import *
 import os.path
 
-from glue.utils.qt import messagebox_on_error
-
 _location = os.path.dirname(__file__)
 
 import PINNDemonstrationApp_support
@@ -81,7 +79,9 @@ class mainWnd:
                 self.txtProgramInfo.insert("1.0", info_content)
                 self.txtProgramInfo.configure(state='disabled')
         except Exception as e:
-            messagebox_on_error("Ошибка чтения", "Произошла ошибка чтения файла инструкций")
+            self.txtProgramInfo.configure(state='normal')
+            self.txtProgramInfo.insert("1.0", "Произошла ошибка чтения файла инструкций")
+            self.txtProgramInfo.configure(state='disabled')
 
         self.Problems = ttk.Frame(self.top)
         self.Problems.place(relx=0.1, rely=0.1, relheight=0.8, relwidth=0.4)
