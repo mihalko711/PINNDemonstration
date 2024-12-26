@@ -195,8 +195,8 @@ def train_model_1(*args):
                         epochs = {int(_w3.epochs_1_scale.get())}, batch_size = {int(_w3.batch_size_1_scale.get())},\
                         info interval = {int(_w3.info_int_1_scale.get())}')
             train1 = threading.Thread(target=pinn1D.train_v1, args= (int(_w3.epochs_1_scale.get()),int(_w3.batch_size_1_scale.get()),int(_w3.info_int_1_scale.get()),callback_func_1))
-            res_loss_1_arr, boundary_loss_1_arr, loss_1_arr = [], [], []
             train1.start()
+
             def  wait_to_draw():
                 train1.join()
                 draw_graph_1()
